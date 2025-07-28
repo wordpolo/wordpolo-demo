@@ -182,7 +182,7 @@ export default function Demo() {
         Demo
       </Typography>
       <Typography variant="h6" component="h6">
-        Play one of our four example puzzles to see how scoring and guessing works!
+        Play one of our four example puzzles to see the scoring in action!
         <br />
         <br />
       </Typography>
