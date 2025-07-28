@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -10,8 +10,8 @@ import {
   DialogContent,
   DialogActions,
   ButtonGroup,
-  Alert,
 } from '@mui/material';
+import API_ROUTES from '../config/routes';
 
 interface GuessResult {
   guess: string;
@@ -119,7 +119,7 @@ export default function Demo() {
     }
 
     try {
-      const response = await fetchWithTimeout('http://5.161.254.250:8000/rank', {
+      const response = await fetchWithTimeout(API_ROUTES.GUESS.RANK, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -133,6 +133,14 @@ export default function Demo() {
 
       if (!response.ok) {
         const errorText = await response.text();
+        const errorData = JSON.parse(errorText);
+        
+        // Handle word not found in rankings
+        if (response.status === 404 && errorData.error === 'Word not found in rankings') {
+          setStatusMessage('That word is not in our dictionary. Try another word!');
+          return;
+        }
+        
         throw new Error(`API Error: ${response.status} - ${errorText}`);
       }
 
@@ -173,7 +181,7 @@ export default function Demo() {
       <Typography variant="h1" component="h1">
         Demo
       </Typography>
-      <Typography variant='h6' component='h6'>
+      <Typography variant="h6" component="h6">
         Play one of our four example puzzles to see how scoring and guessing works!
         <br />
         <br />
@@ -201,7 +209,7 @@ export default function Demo() {
             fullWidth
             value={guessInput}
             onChange={(e) => setGuessInput(e.target.value)}
-            placeholder={isWon ? "Puzzle completed!" : "Enter your guess"}
+            placeholder={isWon ? 'Puzzle completed!' : 'Enter your guess'}
             disabled={isWon || isLoading}
             error={!!error}
             helperText={error}
@@ -246,12 +254,11 @@ export default function Demo() {
         ))}
       </Box>
 
-      {/* Win Modal */}
       <Dialog open={showWinModal} onClose={() => setShowWinModal(false)}>
         <DialogTitle>Congratulations!</DialogTitle>
         <DialogContent>
           <Typography>
-            You've found the word: {targetWord}!
+            You found the word: {targetWord}!
           </Typography>
         </DialogContent>
         <DialogActions>
@@ -259,7 +266,6 @@ export default function Demo() {
         </DialogActions>
       </Dialog>
 
-      {/* Change Puzzle Warning Modal */}
       <Dialog open={showChangeWarning}>
         <DialogTitle>Warning</DialogTitle>
         <DialogContent>
