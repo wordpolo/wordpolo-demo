@@ -179,7 +179,7 @@ export default function Demo() {
   return (
     <Box sx={{ maxWidth: 600, mx: 'auto', p: 2 }}>
       <Typography variant="h1" component="h1">
-        Demo
+        Game Demonstration
       </Typography>
       <Typography variant="h6" component="h6">
         Play one of our four example puzzles to see the scoring in action!
