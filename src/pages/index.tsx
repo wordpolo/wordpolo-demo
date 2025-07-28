@@ -15,7 +15,7 @@ export default function Home() {
           WordPolo is a dataset consisting of 1,500 single-word puzzles, where the goal is to discover this secret word through semantic similarity feedback. WordPolo provides a unique task that <strong>demonstrates the usefulness of metrics beyond dataset accuracy, uncovers common reasoning faults in LRMs, and rewards strong and iterative strategies.</strong>
           <br />
           <br />
-          This site serves as a simple repository for demonstrating the dataset and heuristic, while providing download links for the dataset and supporting files:
+          This site serves as a repository for demonstrating the dataset and heuristic, while providing download links for the dataset and supporting files:
           <br />
           <br />
           <Link href="/about" style={{ color: '#1976d2', textDecoration: 'none' }}>About</Link> - a short description of the dataset, including how puzzles are presented and solved.
