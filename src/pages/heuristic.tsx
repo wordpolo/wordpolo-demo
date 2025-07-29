@@ -29,7 +29,9 @@ export default function Heuristic() {
           Your browser does not support the video tag.
         </video>
       </Box>
-
+      <Typography variant="h1" component="h1" sx={{ mb: 4 }}>
+        Sample Heuristic Solution
+      </Typography>
       <Typography variant="h6" component="h6" sx={{ mb: 4 }}>
         The animation below also shows an example of the heuristic discovering a secret word of <em>fauna</em>. The top five guesses displayed on the right represent the guesses used to create a new centroid, while the blue dots represent the guesses using Principal Component Analysis. The red star represents the secret word.
       </Typography>
